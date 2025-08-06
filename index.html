@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I Love You</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: sans-serif;
+      background-color: #ffe6f0;
+      color: #ff1493;
+      font-size: 2rem;
+      line-height: 3rem;
+      word-wrap: break-word;
+    }
+
+    #loveText {
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div id="loveText">i love yo</div>
+
+  <script>
+    const container = document.getElementById("loveText");
+
+    function addUs(count) {
+      let us = "u".repeat(count);
+      container.textContent += us;
+    }
+
+    // Start with a bunch
+    addUs(500);
+
+    // Add more as user scrolls
+    window.addEventListener("scroll", () => {
+      if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 100) {
+        addUs(200); // Add more "u"s
+      }
+    });
+  </script>
+</body>
+</html>
