@@ -69,14 +69,14 @@
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 36px;
-      height: 36px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background: #fff;
       cursor: pointer;
       box-shadow: none;
       transition: background 0.3s ease, box-shadow 0.3s ease;
-      margin-top: -8px;
+      margin-top: -10px; /* pushed up */
       touch-action: none;
     }
 
@@ -86,14 +86,15 @@
     }
 
     input[type=range]::-moz-range-thumb {
-      width: 36px;
-      height: 36px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background: #fff;
       cursor: pointer;
       box-shadow: none;
       transition: background 0.3s ease, box-shadow 0.3s ease;
       touch-action: none;
+      /* Firefox doesn’t support margin-top on range thumb */
     }
     input[type=range]:active::-moz-range-thumb {
       background: #ff1f4e;
@@ -179,9 +180,9 @@
       }
       input[type=range]::-webkit-slider-thumb,
       input[type=range]::-moz-range-thumb {
-        width: 30px;
-        height: 30px;
-        margin-top: -7px;
+        width: 24px;
+        height: 24px;
+        margin-top: -8px;
       }
       #popup {
         padding: 1rem 1.5rem;
@@ -215,7 +216,7 @@
 
   <div id="popup">
     <div id="emoji">📩</div>
-    <button id="openBtn">Yes</button>
+    <button id="openBtn">read?</button>
   </div>
 
   <div id="letter">
