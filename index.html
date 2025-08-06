@@ -2,49 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Infinite Love</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infinite Soooo</title>
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 2rem;
       font-family: sans-serif;
-      background-color: #ffe6f0;
+      background-color: #fff0f5;
       color: #ff1493;
       font-size: 2rem;
       line-height: 2.5rem;
       word-break: break-word;
+      overflow-x: hidden;
     }
 
-    #loveText {
+    #infiniteLove {
       white-space: pre-wrap;
     }
   </style>
 </head>
 <body>
-  <div id="loveText">i love yo</div>
+  <div id="infiniteLove">i love you s</div>
 
   <script>
-    const loveText = document.getElementById("loveText");
+    const container = document.getElementById("infiniteLove");
 
-    // Function to add more "u"s
-    function addUs(count) {
+    // Add "o"s forever as you scroll
+    function addOs(count) {
       const fragment = document.createDocumentFragment();
       for (let i = 0; i < count; i++) {
-        fragment.append("u");
+        fragment.append("o");
       }
-      loveText.appendChild(fragment);
+      container.appendChild(fragment);
     }
 
-    // Keep adding "u"s when scrolling
+    // Add some to start
+    addOs(999999999999999999999);
+
+    // Keep adding as user scrolls near bottom
     window.addEventListener("scroll", () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
-        addUs(500); // Add more as user nears bottom
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+        addOs(999999999999999999999); // add more as needed
       }
     });
 
-    // Initial load
-    addUs(1000);
+    // Mobile fix: if page is too short at start, fill up
+    window.addEventListener("load", () => {
+      const fillIfNeeded = () => {
+        while (document.body.scrollHeight <= window.innerHeight + 200) {
+          addOs(300);
+        }
+      };
+      fillIfNeeded();
+    });
   </script>
 </body>
 </html>
