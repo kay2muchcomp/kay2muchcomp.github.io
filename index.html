@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>For Vivi</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Rubik:wght@700&display=swap');
 
     body {
       margin: 0;
-      font-family: 'Pacifico', cursive;
+      font-family: 'Rubik', sans-serif;
       background-color: #ffe6f0;
       color: #ff69b4;
       overflow-x: hidden;
@@ -60,11 +60,12 @@
 
     #sliderContainer {
       position: relative;
-      background-color: #ffcce6;
-      padding: 20px;
+      background-color: #ffe6f5;
+      padding: 30px 20px;
       border-radius: 20px;
       margin: 30px auto;
       max-width: 90%;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
     }
 
     #overlay {
@@ -111,17 +112,21 @@
       padding: 10px 20px;
       border-radius: 10px;
       cursor: pointer;
-      font-family: 'Pacifico', cursive;
+      font-family: 'Rubik', sans-serif;
+      font-weight: bold;
     }
 
     #letter {
       display: none;
       margin-top: 40px;
-      font-size: 1.5rem;
-      color: #ff69b4;
+      font-size: 1.8rem;
+      color: #ff1493;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      font-family: 'Pacifico', cursive;
     }
 
-    /* Slider Styling */
     input[type=range] {
       appearance: none;
       width: 80%;
@@ -129,7 +134,7 @@
       background: #ffd6e8;
       border-radius: 10px;
       outline: none;
-      margin: 20px auto 10px auto;
+      margin: 10px auto;
       display: block;
       box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
       position: relative;
@@ -159,7 +164,6 @@
       cursor: pointer;
     }
 
-    /* Game Area */
     #gameArea {
       position: relative;
       height: 300px;
@@ -196,7 +200,7 @@
 
   <section id="home" class="active">
     <h1>HIIII ML</h1>
-    <p>IM SORRY IF ITS NOT GOOD I TOLD U THE CODE IS GONE N I JSUT MADE THIS, IM SORRY..</p>
+    <p><strong>IM SORRY IF ITS NOT GOOD I TOLD U THE CODE IS GONE N I JSUT MADE THIS, IM SORRY..</strong></p>
   </section>
 
   <section id="slider">
@@ -222,12 +226,6 @@
   <script>
     const tabs = document.querySelectorAll('.tabBtn');
     const sections = document.querySelectorAll('section');
-    const gameArea = document.getElementById('gameArea');
-    const scoreEl = document.getElementById('score');
-    const gameMessage = document.getElementById('gameMessage');
-    let score = 0;
-    let gameInterval;
-
     const slider = document.getElementById('loveSlider');
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('popup');
@@ -235,13 +233,45 @@
     const letter = document.getElementById('letter');
     const overlayText = document.getElementById('overlayText');
 
-    function resetSlider() {
-      slider.value = 0;
-      overlay.style.clipPath = `inset(0 100% 0 0)`;
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+        if (tab.dataset.tab === 'slider') {
+          slider.value = 0;
+          overlay.style.clipPath = `inset(0 100% 0 0)`;
+          popup.style.display = 'none';
+          overlayText.style.display = 'block';
+          letter.style.display = 'none';
+        }
+      });
+    });
+
+    slider.addEventListener('input', () => {
+      overlay.style.clipPath = `inset(0 ${100 - slider.value}% 0 0)`;
+      if (slider.value >= 95) {
+        popup.style.display = 'flex';
+        overlayText.style.display = 'none';
+      } else {
+        popup.style.display = 'none';
+        overlayText.style.display = 'block';
+        letter.style.display = 'none';
+      }
+    });
+
+    openBtn.addEventListener('click', () => {
+      letter.style.display = 'block';
       popup.style.display = 'none';
-      overlayText.style.display = 'block';
-      letter.style.display = 'none';
-    }
+    });
+
+    // Mini Game Logic
+    const gameArea = document.getElementById('gameArea');
+    const scoreEl = document.getElementById('score');
+    const gameMessage = document.getElementById('gameMessage');
+    let score = 0;
+    let gameInterval;
 
     function startGame() {
       score = 0;
@@ -282,36 +312,10 @@
 
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        sections.forEach(s => s.classList.remove('active'));
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.tab).classList.add('active');
-
         if (tab.dataset.tab === 'game') startGame();
-        else if (gameInterval) stopGame();
-
-        if (tab.dataset.tab === 'slider') resetSlider();
+        else stopGame();
       });
     });
-
-    slider.addEventListener('input', () => {
-      overlay.style.clipPath = `inset(0 ${100 - slider.value}% 0 0)`;
-      if (slider.value >= 95) {
-        popup.style.display = 'flex';
-        overlayText.style.display = 'none';
-      } else {
-        popup.style.display = 'none';
-        overlayText.style.display = 'block';
-        letter.style.display = 'none';
-      }
-    });
-
-    openBtn.addEventListener('click', () => {
-      letter.style.display = 'block';
-      popup.style.display = 'none';
-    });
-
-    resetSlider();
   </script>
 </body>
 </html>
