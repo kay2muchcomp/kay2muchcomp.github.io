@@ -2,139 +2,142 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For Vivi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Vivi 💖</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Rubik:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
-      margin: 0;
-      font-family: 'Rubik', sans-serif;
+      font-family: 'Patrick Hand', cursive;
       background-color: #ffe6f0;
-      color: #ff69b4;
+      color: #d63384;
+      text-align: center;
       overflow-x: hidden;
     }
 
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: #ffc0cb;
-      padding: 10px 0;
+    header {
+      padding: 1em;
+      background-color: #ffcce0;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
 
-    .tabBtn {
-      background: none;
+    nav button {
+      background-color: #ffb6d9;
       border: none;
-      font-size: 1.2rem;
-      margin: 0 15px;
-      cursor: pointer;
+      padding: 0.6em 1.2em;
+      margin: 0 0.3em;
+      border-radius: 8px;
+      font-weight: bold;
       color: #fff;
+      cursor: pointer;
     }
 
-    .tabBtn.active {
-      text-decoration: underline;
+    nav button.active {
+      background-color: #ff69b4;
     }
 
     section {
       display: none;
-      padding: 30px 20px;
-      text-align: center;
+      padding: 2em;
     }
 
     section.active {
       display: block;
     }
 
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 15px;
-    }
-
-    p {
-      font-size: 1.2rem;
-    }
-
     #sliderContainer {
       position: relative;
-      background-color: #ffe6f5;
-      padding: 30px 20px;
-      border-radius: 20px;
-      margin: 30px auto;
-      max-width: 90%;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+      margin-top: 2em;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     #overlay {
       position: absolute;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ffcce6;
-      z-index: 2;
-      transition: clip-path 0.3s ease;
+      width: 100%;
+      height: 120px;
+      background-color: #ffcce0;
       clip-path: inset(0 100% 0 0);
-      border-radius: 20px;
+      transition: clip-path 0.3s ease;
+      z-index: 2;
+      border-radius: 15px;
+      display: block;
     }
 
     #overlayText {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #ff69b4;
-      font-size: 1.2rem;
+      top: 40%;
+      width: 100%;
+      font-size: 1.5em;
       z-index: 3;
+      color: #d63384;
+      font-weight: bold;
+      user-select: none;
     }
 
     #popup {
-      display: none;
       position: absolute;
-      top: 50%;
+      top: 20%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%);
+      background-color: #ffe6f0;
+      padding: 1em 2em;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: none;
       z-index: 4;
-      background-color: #fff0f5;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
     }
 
-    #openBtn {
-      margin-top: 10px;
+    #popup button {
+      margin-top: 1em;
       background-color: #ff69b4;
       border: none;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 10px;
+      padding: 0.6em 1.2em;
+      color: #fff;
+      border-radius: 6px;
       cursor: pointer;
-      font-family: 'Rubik', sans-serif;
       font-weight: bold;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.1em;
     }
 
     #letter {
       display: none;
-      margin-top: 40px;
-      font-size: 1.8rem;
-      color: #ff1493;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      font-family: 'Pacifico', cursive;
+      margin-top: 2em;
+      font-size: 1.4em;
+      background: #fff0f5;
+      padding: 2em;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      color: #d63384;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: bold;
+      line-height: 1.5;
+      user-select: text;
     }
 
     input[type=range] {
       appearance: none;
-      width: 80%;
+      width: 100%;
       height: 14px;
       background: #ffd6e8;
       border-radius: 10px;
       outline: none;
-      margin: 10px auto;
+      margin: 20px auto 10px auto;
       display: block;
       box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
       position: relative;
@@ -163,69 +166,56 @@
       border: none;
       cursor: pointer;
     }
-
-    #gameArea {
-      position: relative;
-      height: 300px;
-      overflow: hidden;
-      background-color: #ffe6f0;
-      border-radius: 20px;
-    }
-
-    .heart {
-      position: absolute;
-      font-size: 2rem;
-      animation: fall 5s linear forwards;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(100vh);
-        opacity: 0;
-      }
-    }
-
-    #score {
-      font-size: 1.2rem;
-      margin: 10px 0;
-    }
   </style>
 </head>
 <body>
-  <nav>
-    <button class="tabBtn active" data-tab="home">Home</button>
-    <button class="tabBtn" data-tab="slider">Letter</button>
-    <button class="tabBtn" data-tab="game">Mini-Game</button>
-  </nav>
-
-  <section id="home" class="active">
+  <header>
     <h1>HIIII ML</h1>
     <p><strong>IM SORRY IF ITS NOT GOOD I TOLD U THE CODE IS GONE N I JSUT MADE THIS, IM SORRY..</strong></p>
+    <nav>
+      <button class="tabBtn active" data-tab="home">Home</button>
+      <button class="tabBtn" data-tab="game">Minigame</button>
+      <button class="tabBtn" data-tab="slider">Slider Letter</button>
+    </nav>
+  </header>
+
+  <section id="home" class="active">
+    <h2>💌 A lil site for you 💌</h2>
+    <p>You make everything better, and I hope this made you smile just a little bit 💖</p>
+  </section>
+
+  <section id="game">
+    <div id="score">Score: 0</div>
+    <div id="gameArea" style="height: 400px; background: #ffe0eb; margin: 2em auto; border-radius: 20px; max-width: 90%;"></div>
+    <div id="gameMessage"></div>
   </section>
 
   <section id="slider">
     <div id="sliderContainer">
       <div id="overlay">
-        <div id="overlayText">Slide to reveal 💌</div>
+        <div id="overlayText">Slide to see something...</div>
       </div>
       <input type="range" id="loveSlider" min="0" max="100" value="0" />
       <div id="popup">
-        <div style="font-size: 2rem;">💌</div>
+        <div style="font-size: 2em">📩</div>
         <button id="openBtn">read?</button>
       </div>
-      <div id="letter">ilysm vivi 💖</div>
+      <div id="letter">
+        <p>ilysm vivi 💖</p>
+        <p>ur the most amazing, cute, awesome, pretty, sweet gf ever!!!!!! 💕</p>
+      </div>
     </div>
-  </section>
-
-  <section id="game">
-    <div id="score">Score: 0</div>
-    <div id="gameMessage"></div>
-    <div id="gameArea"></div>
   </section>
 
   <script>
     const tabs = document.querySelectorAll('.tabBtn');
     const sections = document.querySelectorAll('section');
+    const gameArea = document.getElementById('gameArea');
+    const scoreEl = document.getElementById('score');
+    const gameMessage = document.getElementById('gameMessage');
+    let score = 0;
+    let gameInterval;
+
     const slider = document.getElementById('loveSlider');
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('popup');
@@ -233,45 +223,14 @@
     const letter = document.getElementById('letter');
     const overlayText = document.getElementById('overlayText');
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        sections.forEach(s => s.classList.remove('active'));
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.tab).classList.add('active');
-        if (tab.dataset.tab === 'slider') {
-          slider.value = 0;
-          overlay.style.clipPath = `inset(0 100% 0 0)`;
-          popup.style.display = 'none';
-          overlayText.style.display = 'block';
-          letter.style.display = 'none';
-        }
-      });
-    });
-
-    slider.addEventListener('input', () => {
-      overlay.style.clipPath = `inset(0 ${100 - slider.value}% 0 0)`;
-      if (slider.value >= 95) {
-        popup.style.display = 'flex';
-        overlayText.style.display = 'none';
-      } else {
-        popup.style.display = 'none';
-        overlayText.style.display = 'block';
-        letter.style.display = 'none';
-      }
-    });
-
-    openBtn.addEventListener('click', () => {
-      letter.style.display = 'block';
+    function resetSlider() {
+      slider.value = 0;
+      overlay.style.clipPath = `inset(0 100% 0 0)`;
+      overlay.style.display = 'block';
       popup.style.display = 'none';
-    });
-
-    // Mini Game Logic
-    const gameArea = document.getElementById('gameArea');
-    const scoreEl = document.getElementById('score');
-    const gameMessage = document.getElementById('gameMessage');
-    let score = 0;
-    let gameInterval;
+      overlayText.style.display = 'block';
+      letter.style.display = 'none';
+    }
 
     function startGame() {
       score = 0;
@@ -290,32 +249,68 @@
     function createHeart() {
       const heart = document.createElement('div');
       heart.classList.add('heart');
-      heart.innerText = '💖';
+      heart.textContent = '💖';
       heart.style.left = Math.random() * (gameArea.clientWidth - 40) + 'px';
-      heart.style.top = '-40px';
-      gameArea.appendChild(heart);
+      heart.style.animationDuration = 4 + Math.random() * 3 + 's';
 
       heart.addEventListener('click', () => {
         score++;
         scoreEl.textContent = 'Score: ' + score;
         gameMessage.textContent = 'You caught a heart! 💖';
         heart.remove();
-        setTimeout(() => gameMessage.textContent = '', 1000);
+        setTimeout(() => gameMessage.textContent = '', 1200);
       });
+
+      gameArea.appendChild(heart);
 
       setTimeout(() => {
         if (gameArea.contains(heart)) {
+          gameMessage.textContent = 'Missed a heart! Try again.';
           heart.remove();
+          setTimeout(() => gameMessage.textContent = '', 1200);
         }
-      }, 6000);
+      }, 7000);
     }
 
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
-        if (tab.dataset.tab === 'game') startGame();
-        else stopGame();
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+
+        if (tab.dataset.tab === 'game') {
+          startGame();
+        } else {
+          if (gameInterval) stopGame();
+        }
+
+        if (tab.dataset.tab === 'slider') {
+          resetSlider();
+        }
       });
     });
+
+    slider.addEventListener('input', () => {
+      overlay.style.clipPath = `inset(0 ${100 - slider.value}% 0 0)`;
+      if (slider.value >= 95) {
+        overlay.style.display = 'none';
+        popup.style.display = 'flex';
+        overlayText.style.display = 'none';
+      } else {
+        overlay.style.display = 'block';
+        popup.style.display = 'none';
+        overlayText.style.display = 'block';
+        letter.style.display = 'none';
+      }
+    });
+
+    openBtn.addEventListener('click', () => {
+      letter.style.display = 'block';
+      popup.style.display = 'none';
+    });
+
+    resetSlider();
   </script>
 </body>
 </html>
