@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>For Vivi 💖</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For Vivi 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: #ffe6f0;
-      color: #333;
+      font-family: 'Dancing Script', cursive;
+      background: linear-gradient(to bottom right, #ffe6f0, #ffccdd);
+      color: #444;
       overflow-x: hidden;
     }
 
     nav {
       display: flex;
       justify-content: center;
-      background: #ffb6c1;
-      padding: 10px;
+      background: #ff9ebc;
+      padding: 12px;
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .tabBtn {
       background: transparent;
       border: none;
-      padding: 10px 20px;
-      font-size: 16px;
+      padding: 10px 18px;
+      font-size: 20px;
       cursor: pointer;
-      color: #fff;
+      color: white;
       font-weight: bold;
-      transition: 0.3s;
+      border-radius: 10px;
+      margin: 0 8px;
+      transition: all 0.3s ease;
     }
 
     .tabBtn.active {
-      background: #fff;
+      background: white;
       color: #ff69b4;
-      border-radius: 8px;
     }
 
     section {
       display: none;
-      padding: 20px;
+      padding: 25px;
       text-align: center;
     }
 
@@ -50,23 +53,22 @@
       display: block;
     }
 
-    /* HOME */
-    #home h1 {
-      font-size: 2rem;
-      margin-top: 30px;
+    h1, h2 {
+      font-size: 2.5rem;
+      margin: 20px 0 10px;
     }
 
     /* SLIDER LETTER */
     #sliderContainer {
       position: relative;
       width: 90%;
-      max-width: 400px;
-      height: 220px;
+      max-width: 360px;
+      height: 200px;
       margin: 50px auto;
-      border-radius: 12px;
-      background: #ffeef5;
+      border-radius: 15px;
+      background: #fff5f9;
       overflow: hidden;
-      box-shadow: 0 0 0 transparent;
+      border: 2px solid #ffc2d1;
     }
 
     #overlay {
@@ -75,7 +77,7 @@
       left: 0;
       height: 100%;
       width: 100%;
-      background: #ffb6c1;
+      background: #ffc0cb;
       clip-path: inset(0 100% 0 0);
       transition: clip-path 0.2s ease;
       display: flex;
@@ -84,34 +86,22 @@
     }
 
     #overlayText {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: white;
-      font-weight: bold;
     }
 
     input[type=range] {
       width: 90%;
-      margin-top: 15px;
-      height: 14px;
+      margin-top: 10px;
     }
 
     input[type=range]::-webkit-slider-thumb {
       width: 20px;
       height: 20px;
-      margin-top: -14px;
       background: #fff;
+      border: 2px solid #ff69b4;
       border-radius: 50%;
       cursor: pointer;
-      touch-action: none;
-    }
-
-    input[type=range]::-moz-range-thumb {
-      width: 20px;
-      height: 20px;
-      background: #fff;
-      border-radius: 50%;
-      cursor: pointer;
-      touch-action: none;
     }
 
     #popup {
@@ -120,37 +110,39 @@
       display: none;
       align-items: center;
       justify-content: center;
-      background: rgba(0,0,0,0.3);
+      background: rgba(0, 0, 0, 0.2);
       z-index: 2;
       flex-direction: column;
     }
 
     #popup span {
-      font-size: 2rem;
+      font-size: 2.5rem;
     }
 
     #openBtn {
-      margin-top: 10px;
+      margin-top: 12px;
       padding: 8px 16px;
-      font-size: 16px;
+      font-size: 18px;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       background: #fff;
       color: #ff69b4;
       font-weight: bold;
       cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     #letter {
       display: none;
       background: white;
-      margin-top: 30px;
+      margin-top: 20px;
       padding: 20px;
       border-radius: 12px;
-      max-width: 400px;
+      max-width: 360px;
       margin-left: auto;
       margin-right: auto;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     /* MINI-GAME */
@@ -158,32 +150,30 @@
       position: relative;
       height: 300px;
       background: #fff0f5;
-      border-radius: 10px;
+      border-radius: 15px;
       overflow: hidden;
       margin: 20px auto;
-      max-width: 400px;
+      max-width: 360px;
+      border: 2px solid #ffc2d1;
     }
 
     .heart {
       position: absolute;
       top: 0;
-      width: 30px;
-      height: 30px;
-      background: red;
-      border-radius: 50%;
+      font-size: 1.8rem;
       animation: fall linear forwards;
     }
 
     @keyframes fall {
       to {
-        transform: translateY(350px);
+        transform: translateY(340px);
         opacity: 0;
       }
     }
 
     #score, #gameMessage {
-      margin-top: 10px;
-      font-size: 1.2rem;
+      margin-top: 12px;
+      font-size: 1.4rem;
       color: #d6336c;
     }
   </style>
@@ -196,18 +186,21 @@
     <button class="tabBtn" data-tab="slider">Slider Letter</button>
   </nav>
 
+  <!-- HOME TAB -->
   <section id="home" class="active">
-    <h1>Hi Vivi 💖</h1>
-    <p>Welcome to your special little love corner made just for you.</p>
+    <h1>HIIII ML</h1>
+    <p>IM SORRY IF ITS NOT GOOD I TOLD U THE CODE IS GONE N I JSUT MADE THIS, IM SORRY..</p>
   </section>
 
+  <!-- MINI-GAME TAB -->
   <section id="game">
-    <h2>Catch the Hearts!</h2>
+    <h2>Catch the Hearts 💘</h2>
     <div id="gameArea"></div>
     <p id="score">Score: 0</p>
     <p id="gameMessage"></p>
   </section>
 
+  <!-- SLIDER TAB -->
   <section id="slider">
     <div id="sliderContainer">
       <div id="overlay">
@@ -219,7 +212,7 @@
         <button id="openBtn">read?</button>
       </div>
     </div>
-    <div id="letter">I love you so much Vivi. You mean everything to me. 💖</div>
+    <div id="letter">I love you so much Vivi. Forever & always. 💕</div>
   </section>
 
   <script>
@@ -250,9 +243,9 @@
 
     function startGame() {
       score = 0;
-      scoreEl.textContent = 'Score: ' + score;
-      gameMessage.textContent = 'Catch the hearts by clicking on them!';
-      gameInterval = setInterval(createHeart, 1200);
+      scoreEl.textContent = 'Score: 0';
+      gameMessage.textContent = 'Catch the hearts by tapping them!';
+      gameInterval = setInterval(createHeart, 1000);
     }
 
     function stopGame() {
@@ -265,8 +258,8 @@
     function createHeart() {
       const heart = document.createElement('div');
       heart.classList.add('heart');
+      heart.innerHTML = '❤️';
       heart.style.left = Math.random() * (gameArea.clientWidth - 30) + 'px';
-      heart.style.background = '#' + Math.floor(Math.random()*16777215).toString(16);
       heart.style.animationDuration = 4 + Math.random() * 2 + 's';
 
       heart.addEventListener('click', () => {
@@ -281,9 +274,9 @@
 
       setTimeout(() => {
         if (gameArea.contains(heart)) {
-          gameMessage.textContent = 'Missed a heart!';
+          gameMessage.textContent = 'Missed one! 💔';
           heart.remove();
-          setTimeout(() => gameMessage.textContent = '', 800);
+          setTimeout(() => gameMessage.textContent = '', 1000);
         }
       }, 6000);
     }
@@ -329,6 +322,5 @@
     // Init
     resetSlider();
   </script>
-
 </body>
 </html>
