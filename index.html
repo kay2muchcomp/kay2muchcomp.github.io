@@ -2,50 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>For Vivi 💌</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Vivi</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
     body {
       margin: 0;
-      font-family: 'Dancing Script', cursive;
-      background: linear-gradient(to bottom right, #ffe6f0, #ffccdd);
-      color: #444;
+      font-family: 'Pacifico', cursive;
+      background-color: #ffe6f0;
+      color: #ff69b4;
       overflow-x: hidden;
     }
 
     nav {
       display: flex;
       justify-content: center;
-      background: #ff9ebc;
-      padding: 12px;
+      background-color: #ffc0cb;
+      padding: 10px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .tabBtn {
-      background: transparent;
+      background: none;
       border: none;
-      padding: 10px 18px;
-      font-size: 20px;
+      font-size: 1.2rem;
+      margin: 0 15px;
       cursor: pointer;
-      color: white;
-      font-weight: bold;
-      border-radius: 10px;
-      margin: 0 8px;
-      transition: all 0.3s ease;
+      color: #fff;
     }
 
     .tabBtn.active {
-      background: white;
-      color: #ff69b4;
+      text-decoration: underline;
     }
 
     section {
       display: none;
-      padding: 25px;
+      padding: 30px 20px;
       text-align: center;
     }
 
@@ -53,154 +49,156 @@
       display: block;
     }
 
-    h1, h2 {
-      font-size: 2.5rem;
-      margin: 20px 0 10px;
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
     }
 
-    /* SLIDER LETTER */
+    p {
+      font-size: 1.2rem;
+    }
+
     #sliderContainer {
       position: relative;
-      width: 90%;
-      max-width: 360px;
-      height: 200px;
-      margin: 50px auto;
-      border-radius: 15px;
-      background: #fff5f9;
-      overflow: hidden;
-      border: 2px solid #ffc2d1;
+      background-color: #ffcce6;
+      padding: 20px;
+      border-radius: 20px;
+      margin: 30px auto;
+      max-width: 90%;
     }
 
     #overlay {
       position: absolute;
       top: 0;
       left: 0;
-      height: 100%;
-      width: 100%;
-      background: #ffc0cb;
+      right: 0;
+      bottom: 0;
+      background-color: #ffcce6;
+      z-index: 2;
+      transition: clip-path 0.3s ease;
       clip-path: inset(0 100% 0 0);
-      transition: clip-path 0.2s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border-radius: 20px;
     }
 
     #overlayText {
-      font-size: 1.8rem;
-      color: white;
-    }
-
-    input[type=range] {
-      width: 90%;
-      margin-top: 10px;
-    }
-
-    input[type=range]::-webkit-slider-thumb {
-      width: 20px;
-      height: 20px;
-      background: #fff;
-      border: 2px solid #ff69b4;
-      border-radius: 50%;
-      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #ff69b4;
+      font-size: 1.2rem;
+      z-index: 3;
     }
 
     #popup {
-      position: absolute;
-      inset: 0;
       display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.2);
-      z-index: 2;
-      flex-direction: column;
-    }
-
-    #popup span {
-      font-size: 2.5rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+      background-color: #fff0f5;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
     #openBtn {
-      margin-top: 12px;
-      padding: 8px 16px;
-      font-size: 18px;
+      margin-top: 10px;
+      background-color: #ff69b4;
       border: none;
-      border-radius: 8px;
-      background: #fff;
-      color: #ff69b4;
-      font-weight: bold;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
       cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      font-family: 'Pacifico', cursive;
     }
 
     #letter {
       display: none;
-      background: white;
-      margin-top: 20px;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 360px;
-      margin-left: auto;
-      margin-right: auto;
+      margin-top: 40px;
       font-size: 1.5rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      color: #ff69b4;
     }
 
-    /* MINI-GAME */
+    /* Slider Styling */
+    input[type=range] {
+      appearance: none;
+      width: 80%;
+      height: 14px;
+      background: #ffd6e8;
+      border-radius: 10px;
+      outline: none;
+      margin: 20px auto 10px auto;
+      display: block;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      appearance: none;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='65' font-size='85'>💖</text></svg>");
+      background-size: contain;
+      background-repeat: no-repeat;
+      border: none;
+      cursor: pointer;
+      margin-top: -13px;
+    }
+
+    input[type=range]::-moz-range-thumb {
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='65' font-size='85'>💖</text></svg>");
+      background-size: contain;
+      background-repeat: no-repeat;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Game Area */
     #gameArea {
       position: relative;
       height: 300px;
-      background: #fff0f5;
-      border-radius: 15px;
       overflow: hidden;
-      margin: 20px auto;
-      max-width: 360px;
-      border: 2px solid #ffc2d1;
+      background-color: #ffe6f0;
+      border-radius: 20px;
     }
 
     .heart {
       position: absolute;
-      top: 0;
-      font-size: 1.8rem;
-      animation: fall linear forwards;
+      font-size: 2rem;
+      animation: fall 5s linear forwards;
     }
 
     @keyframes fall {
       to {
-        transform: translateY(340px);
+        transform: translateY(100vh);
         opacity: 0;
       }
     }
 
-    #score, #gameMessage {
-      margin-top: 12px;
-      font-size: 1.4rem;
-      color: #d6336c;
+    #score {
+      font-size: 1.2rem;
+      margin: 10px 0;
     }
   </style>
 </head>
 <body>
-
   <nav>
     <button class="tabBtn active" data-tab="home">Home</button>
+    <button class="tabBtn" data-tab="slider">Letter</button>
     <button class="tabBtn" data-tab="game">Mini-Game</button>
-    <button class="tabBtn" data-tab="slider">Slider Letter</button>
   </nav>
 
-  <!-- HOME TAB -->
   <section id="home" class="active">
     <h1>HIIII ML</h1>
     <p>IM SORRY IF ITS NOT GOOD I TOLD U THE CODE IS GONE N I JSUT MADE THIS, IM SORRY..</p>
   </section>
 
-  <!-- MINI-GAME TAB -->
-  <section id="game">
-    <h2>Catch the Hearts 💘</h2>
-    <div id="gameArea"></div>
-    <p id="score">Score: 0</p>
-    <p id="gameMessage"></p>
-  </section>
-
-  <!-- SLIDER TAB -->
   <section id="slider">
     <div id="sliderContainer">
       <div id="overlay">
@@ -208,16 +206,27 @@
       </div>
       <input type="range" id="loveSlider" min="0" max="100" value="0" />
       <div id="popup">
-        <span>📩</span>
+        <div style="font-size: 2rem;">💌</div>
         <button id="openBtn">read?</button>
       </div>
+      <div id="letter">ilysm vivi 💖</div>
     </div>
-    <div id="letter">I love you so much Vivi. Forever & always. 💕</div>
+  </section>
+
+  <section id="game">
+    <div id="score">Score: 0</div>
+    <div id="gameMessage"></div>
+    <div id="gameArea"></div>
   </section>
 
   <script>
     const tabs = document.querySelectorAll('.tabBtn');
     const sections = document.querySelectorAll('section');
+    const gameArea = document.getElementById('gameArea');
+    const scoreEl = document.getElementById('score');
+    const gameMessage = document.getElementById('gameMessage');
+    let score = 0;
+    let gameInterval;
 
     const slider = document.getElementById('loveSlider');
     const overlay = document.getElementById('overlay');
@@ -225,13 +234,6 @@
     const openBtn = document.getElementById('openBtn');
     const letter = document.getElementById('letter');
     const overlayText = document.getElementById('overlayText');
-
-    const gameArea = document.getElementById('gameArea');
-    const scoreEl = document.getElementById('score');
-    const gameMessage = document.getElementById('gameMessage');
-
-    let gameInterval;
-    let score = 0;
 
     function resetSlider() {
       slider.value = 0;
@@ -243,9 +245,9 @@
 
     function startGame() {
       score = 0;
-      scoreEl.textContent = 'Score: 0';
-      gameMessage.textContent = 'Catch the hearts by tapping them!';
-      gameInterval = setInterval(createHeart, 1000);
+      scoreEl.textContent = 'Score: ' + score;
+      gameMessage.textContent = 'Catch the hearts by clicking on them!';
+      gameInterval = setInterval(createHeart, 1200);
     }
 
     function stopGame() {
@@ -258,9 +260,10 @@
     function createHeart() {
       const heart = document.createElement('div');
       heart.classList.add('heart');
-      heart.innerHTML = '❤️';
-      heart.style.left = Math.random() * (gameArea.clientWidth - 30) + 'px';
-      heart.style.animationDuration = 4 + Math.random() * 2 + 's';
+      heart.innerText = '💖';
+      heart.style.left = Math.random() * (gameArea.clientWidth - 40) + 'px';
+      heart.style.top = '-40px';
+      gameArea.appendChild(heart);
 
       heart.addEventListener('click', () => {
         score++;
@@ -270,13 +273,9 @@
         setTimeout(() => gameMessage.textContent = '', 1000);
       });
 
-      gameArea.appendChild(heart);
-
       setTimeout(() => {
         if (gameArea.contains(heart)) {
-          gameMessage.textContent = 'Missed one! 💔';
           heart.remove();
-          setTimeout(() => gameMessage.textContent = '', 1000);
         }
       }, 6000);
     }
@@ -285,20 +284,13 @@
       tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('active'));
         sections.forEach(s => s.classList.remove('active'));
-
         tab.classList.add('active');
-        const target = document.getElementById(tab.dataset.tab);
-        target.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
 
-        if (tab.dataset.tab === 'game') {
-          startGame();
-        } else {
-          stopGame();
-        }
+        if (tab.dataset.tab === 'game') startGame();
+        else if (gameInterval) stopGame();
 
-        if (tab.dataset.tab === 'slider') {
-          resetSlider();
-        }
+        if (tab.dataset.tab === 'slider') resetSlider();
       });
     });
 
@@ -319,7 +311,6 @@
       popup.style.display = 'none';
     });
 
-    // Init
     resetSlider();
   </script>
 </body>
