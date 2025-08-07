@@ -1,245 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Love for Vivi 💖</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>For Vivi 💖</title>
   <style>
-    /* Basic reset */
-    * {
-      box-sizing: border-box;
-    }
-    body, html {
-      margin: 0; padding: 0;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: #fff0f6;
-      color: #880e4f;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
-    /* Nav */
-    nav {
-      width: 100%;
-      background: #ffb6c1;
-      display: flex;
-      justify-content: center;
-      border-bottom: 2px solid #ff8fab;
-      user-select: none;
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
-    nav button {
-      flex: 1;
-      padding: 1rem 0;
-      border: none;
-      background: none;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #660038;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    nav button:hover {
-      background-color: #ff8fab;
-      color: white;
-    }
-    nav button.active {
-      background-color: #ff4a6e;
-      color: white;
-      cursor: default;
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #ffe6f0;
+      color: #333;
+      overflow-x: hidden;
     }
 
-    /* Sections */
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #ffb6c1;
+      padding: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .tabBtn {
+      background: transparent;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      color: #fff;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .tabBtn.active {
+      background: #fff;
+      color: #ff69b4;
+      border-radius: 8px;
+    }
+
     section {
       display: none;
-      max-width: 400px;
-      width: 90vw;
-      padding: 1.5rem 1rem;
-      margin: 1rem auto 2rem;
-      background: #fff8f9;
-      border-radius: 15px;
-      box-shadow:
-        0 0 15px rgba(0,0,0,0.15),
-        inset 0 0 40px #ffe0e8;
-      color: #b0003a;
+      padding: 20px;
       text-align: center;
-      font-weight: bold;
-      user-select: none;
-      min-height: 300px;
     }
+
     section.active {
       display: block;
     }
 
-    /* ========== HOME ========== */
+    /* HOME */
     #home h1 {
       font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #a1003e;
-    }
-    #home p {
-      font-size: 1.2rem;
-      font-style: italic;
+      margin-top: 30px;
     }
 
-    /* ========== SLIDER LETTER ========== */
-    #overlay {
+    /* SLIDER LETTER */
+    #sliderContainer {
       position: relative;
-      background-color: #ffb6c1;
-      border-radius: 15px;
-      padding: 1rem;
-      user-select: none;
-      min-height: 180px;
+      width: 90%;
+      max-width: 400px;
+      height: 220px;
+      margin: 50px auto;
+      border-radius: 12px;
+      background: #ffeef5;
+      overflow: hidden;
+      box-shadow: 0 0 0 transparent;
+    }
+
+    #overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: #ffb6c1;
+      clip-path: inset(0 100% 0 0);
+      transition: clip-path 0.2s ease;
       display: flex;
-      flex-direction: column;
+      align-items: center;
       justify-content: center;
     }
-    #sliderContainer {
-      margin-top: 2rem;
-      width: 100%;
+
+    #overlayText {
+      font-size: 1.5rem;
+      color: white;
+      font-weight: bold;
     }
+
     input[type=range] {
-      -webkit-appearance: none;
-      width: 100%;
+      width: 90%;
+      margin-top: 15px;
       height: 14px;
-      border-radius: 10px;
-      background: #ff8fab;
-      outline: none;
-      cursor: pointer;
-      box-shadow: none;
-      transition: box-shadow 0.3s ease;
-      touch-action: pan-x;
     }
+
     input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
       width: 20px;
       height: 20px;
-      border-radius: 50%;
+      margin-top: -14px;
       background: #fff;
+      border-radius: 50%;
       cursor: pointer;
-      box-shadow: none;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      margin-top: -3px;
       touch-action: none;
     }
-    input[type=range]:active::-webkit-slider-thumb {
-      background: #ff1f4e;
-      box-shadow: none;
-    }
+
     input[type=range]::-moz-range-thumb {
       width: 20px;
       height: 20px;
-      border-radius: 50%;
       background: #fff;
+      border-radius: 50%;
       cursor: pointer;
-      box-shadow: none;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
       touch-action: none;
     }
-    input[type=range]:active::-moz-range-thumb {
-      background: #ff1f4e;
-      box-shadow: none;
-    }
-    #overlayText {
-      font-size: 1.3rem;
-      color: #660038;
-    }
+
     #popup {
-      margin-top: 1rem;
-      background: #ffccd6;
-      border-radius: 10px;
-      padding: 1rem;
-      user-select: none;
+      position: absolute;
+      inset: 0;
       display: none;
-      flex-direction: column;
       align-items: center;
-    }
-    #emoji {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-    #popup button {
-      font-size: 1rem;
-      padding: 0.4rem 1.2rem;
-      background-color: #ff8fab;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      color: white;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-    #popup button:hover {
-      background-color: #ff4a6e;
-    }
-    #letter {
-      margin-top: 1.5rem;
-      font-size: 1.6rem;
-      line-height: 1.5;
-      white-space: pre-line;
-      font-family: 'Segoe Script', cursive, 'Comic Sans MS', cursive, sans-serif;
-      color: #a1003e;
+      justify-content: center;
+      background: rgba(0,0,0,0.3);
+      z-index: 2;
+      flex-direction: column;
     }
 
-    /* ========== MINI-GAME ========== */
+    #popup span {
+      font-size: 2rem;
+    }
+
+    #openBtn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      background: #fff;
+      color: #ff69b4;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #letter {
+      display: none;
+      background: white;
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.2rem;
+    }
+
+    /* MINI-GAME */
     #gameArea {
       position: relative;
-      height: 250px;
-      background: #ffd1e0;
-      border-radius: 15px;
+      height: 300px;
+      background: #fff0f5;
+      border-radius: 10px;
       overflow: hidden;
-      user-select: none;
-    }
-    .heart {
-      position: absolute;
-      width: 40px;
-      height: 36px;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Heart_font_awesome.svg/1024px-Heart_font_awesome.svg.png') no-repeat center center;
-      background-size: contain;
-      cursor: pointer;
-      animation: fall 5s linear infinite;
-      user-select: none;
-    }
-    @keyframes fall {
-      0% { top: -50px; }
-      100% { top: 250px; }
-    }
-    #score {
-      margin-top: 0.8rem;
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: #660038;
-    }
-    #gameMessage {
-      margin-top: 1rem;
-      font-size: 1.2rem;
-      font-style: italic;
-      color: #aa005a;
-      min-height: 1.2em;
+      margin: 20px auto;
+      max-width: 400px;
     }
 
-    /* Responsive */
-    @media (max-width: 400px) {
-      nav button {
-        font-size: 1rem;
-        padding: 0.8rem 0;
+    .heart {
+      position: absolute;
+      top: 0;
+      width: 30px;
+      height: 30px;
+      background: red;
+      border-radius: 50%;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(350px);
+        opacity: 0;
       }
-      section {
-        max-width: 100%;
-        margin: 1rem 0 1rem;
-        min-height: 250px;
-      }
-      #gameArea {
-        height: 200px;
-      }
-      .heart {
-        width: 30px;
-        height: 27px;
-      }
+    }
+
+    #score, #gameMessage {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #d6336c;
     }
   </style>
 </head>
@@ -251,52 +196,36 @@
     <button class="tabBtn" data-tab="slider">Slider Letter</button>
   </nav>
 
-  <!-- HOME -->
   <section id="home" class="active">
-    <h1>Welcome to Our Love Site 💖</h1>
-    <p>Hi Vivi! This little site is just for you, filled with love and fun.</p>
+    <h1>Hi Vivi 💖</h1>
+    <p>Welcome to your special little love corner made just for you.</p>
   </section>
 
-  <!-- MINI-GAME -->
   <section id="game">
+    <h2>Catch the Hearts!</h2>
     <div id="gameArea"></div>
-    <div id="score">Score: 0</div>
-    <div id="gameMessage"></div>
+    <p id="score">Score: 0</p>
+    <p id="gameMessage"></p>
   </section>
 
-  <!-- SLIDER LETTER -->
   <section id="slider">
-    <div id="overlay">
-      <div id="overlayText">Slide to reveal</div>
-      <div id="sliderContainer">
-        <input type="range" min="0" max="100" value="0" id="loveSlider" />
+    <div id="sliderContainer">
+      <div id="overlay">
+        <div id="overlayText">Slide to reveal 💌</div>
       </div>
-
+      <input type="range" id="loveSlider" min="0" max="100" value="0" />
       <div id="popup">
-        <div id="emoji">📩</div>
+        <span>📩</span>
         <button id="openBtn">read?</button>
       </div>
-
-      <div id="letter" style="display:none;">
-Ilysm Vivi 💖
-      </div>
     </div>
+    <div id="letter">I love you so much Vivi. You mean everything to me. 💖</div>
   </section>
 
   <script>
-    // TAB NAV
     const tabs = document.querySelectorAll('.tabBtn');
     const sections = document.querySelectorAll('section');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        sections.forEach(s => s.classList.remove('active'));
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.tab).classList.add('active');
-      });
-    });
 
-    // SLIDER LETTER LOGIC
     const slider = document.getElementById('loveSlider');
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('popup');
@@ -304,7 +233,102 @@ Ilysm Vivi 💖
     const letter = document.getElementById('letter');
     const overlayText = document.getElementById('overlayText');
 
+    const gameArea = document.getElementById('gameArea');
+    const scoreEl = document.getElementById('score');
+    const gameMessage = document.getElementById('gameMessage');
+
+    let gameInterval;
+    let score = 0;
+
+    function resetSlider() {
+      slider.value = 0;
+      overlay.style.clipPath = `inset(0 100% 0 0)`;
+      popup.style.display = 'none';
+      overlayText.style.display = 'block';
+      letter.style.display = 'none';
+    }
+
+    function startGame() {
+      score = 0;
+      scoreEl.textContent = 'Score: ' + score;
+      gameMessage.textContent = 'Catch the hearts by clicking on them!';
+      gameInterval = setInterval(createHeart, 1200);
+    }
+
+    function stopGame() {
+      clearInterval(gameInterval);
+      gameInterval = null;
+      document.querySelectorAll('.heart').forEach(h => h.remove());
+      gameMessage.textContent = '';
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * (gameArea.clientWidth - 30) + 'px';
+      heart.style.background = '#' + Math.floor(Math.random()*16777215).toString(16);
+      heart.style.animationDuration = 4 + Math.random() * 2 + 's';
+
+      heart.addEventListener('click', () => {
+        score++;
+        scoreEl.textContent = 'Score: ' + score;
+        gameMessage.textContent = 'You caught a heart! 💖';
+        heart.remove();
+        setTimeout(() => gameMessage.textContent = '', 1000);
+      });
+
+      gameArea.appendChild(heart);
+
+      setTimeout(() => {
+        if (gameArea.contains(heart)) {
+          gameMessage.textContent = 'Missed a heart!';
+          heart.remove();
+          setTimeout(() => gameMessage.textContent = '', 800);
+        }
+      }, 6000);
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+
+        tab.classList.add('active');
+        const target = document.getElementById(tab.dataset.tab);
+        target.classList.add('active');
+
+        if (tab.dataset.tab === 'game') {
+          startGame();
+        } else {
+          stopGame();
+        }
+
+        if (tab.dataset.tab === 'slider') {
+          resetSlider();
+        }
+      });
+    });
+
     slider.addEventListener('input', () => {
       overlay.style.clipPath = `inset(0 ${100 - slider.value}% 0 0)`;
       if (slider.value >= 95) {
-        popup
+        popup.style.display = 'flex';
+        overlayText.style.display = 'none';
+      } else {
+        popup.style.display = 'none';
+        overlayText.style.display = 'block';
+        letter.style.display = 'none';
+      }
+    });
+
+    openBtn.addEventListener('click', () => {
+      letter.style.display = 'block';
+      popup.style.display = 'none';
+    });
+
+    // Init
+    resetSlider();
+  </script>
+
+</body>
+</html>
