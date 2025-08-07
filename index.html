@@ -1,62 +1,110 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>I LOVE MY GF SM YAYAY</title>
+  <title>Love for Vivi 💖</title>
   <style>
-    /* Reset */
+    /* Basic reset */
     * {
       box-sizing: border-box;
     }
     body, html {
       margin: 0; padding: 0;
-      height: 100%;
       font-family: 'Comic Sans MS', cursive, sans-serif;
       background: #fff0f6;
-      overflow-x: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* Overlay box */
-    #overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: #ffb6c1; /* baby pink */
-      z-index: 10;
-      transition: opacity 0.3s ease;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      pointer-events: auto;
-      user-select: none;
-      font-size: 1.2rem;
       color: #880e4f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    /* Nav */
+    nav {
+      width: 100%;
+      background: #ffb6c1;
+      display: flex;
+      justify-content: center;
+      border-bottom: 2px solid #ff8fab;
+      user-select: none;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    nav button {
+      flex: 1;
+      padding: 1rem 0;
+      border: none;
+      background: none;
+      font-size: 1.2rem;
       font-weight: bold;
-      padding: 0 1rem;
-      text-align: center;
+      color: #660038;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    nav button:hover {
+      background-color: #ff8fab;
+      color: white;
+    }
+    nav button.active {
+      background-color: #ff4a6e;
+      color: white;
+      cursor: default;
     }
 
-    /* Slider container inside overlay */
-    #sliderContainer {
-      position: absolute;
-      bottom: 180px; /* pushed WAY up */
-      width: 90vw;
+    /* Sections */
+    section {
+      display: none;
       max-width: 400px;
+      width: 90vw;
+      padding: 1.5rem 1rem;
+      margin: 1rem auto 2rem;
+      background: #fff8f9;
+      border-radius: 15px;
+      box-shadow:
+        0 0 15px rgba(0,0,0,0.15),
+        inset 0 0 40px #ffe0e8;
+      color: #b0003a;
+      text-align: center;
+      font-weight: bold;
+      user-select: none;
+      min-height: 300px;
+    }
+    section.active {
+      display: block;
     }
 
+    /* ========== HOME ========== */
+    #home h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #a1003e;
+    }
+    #home p {
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+
+    /* ========== SLIDER LETTER ========== */
+    #overlay {
+      position: relative;
+      background-color: #ffb6c1;
+      border-radius: 15px;
+      padding: 1rem;
+      user-select: none;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    #sliderContainer {
+      margin-top: 2rem;
+      width: 100%;
+    }
     input[type=range] {
       -webkit-appearance: none;
       width: 100%;
-      height: 14px; /* smaller track */
+      height: 14px;
       border-radius: 10px;
       background: #ff8fab;
       outline: none;
@@ -65,7 +113,6 @@
       transition: box-shadow 0.3s ease;
       touch-action: pan-x;
     }
-
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
@@ -76,15 +123,13 @@
       cursor: pointer;
       box-shadow: none;
       transition: background 0.3s ease, box-shadow 0.3s ease;
-      margin-top: -14px; /* pushed way up */
+      margin-top: -3px;
       touch-action: none;
     }
-
     input[type=range]:active::-webkit-slider-thumb {
       background: #ff1f4e;
       box-shadow: none;
     }
-
     input[type=range]::-moz-range-thumb {
       width: 20px;
       height: 20px;
@@ -99,37 +144,27 @@
       background: #ff1f4e;
       box-shadow: none;
     }
-
-    /* Popup modal */
+    #overlayText {
+      font-size: 1.3rem;
+      color: #660038;
+    }
     #popup {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      padding: 1.5rem 2rem;
-      text-align: center;
-      font-size: 1.2rem;
-      color: #880e4f;
-      z-index: 20;
+      margin-top: 1rem;
+      background: #ffccd6;
+      border-radius: 10px;
+      padding: 1rem;
+      user-select: none;
       display: none;
-      user-select: none;
-      max-width: 300px;
-      width: 80vw;
+      flex-direction: column;
+      align-items: center;
     }
-
     #emoji {
-      font-size: 3rem;
-      margin-bottom: 0.75rem;
-      user-select: none;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
     }
-
     #popup button {
-      margin: 1rem 0 0 0;
-      font-size: 1.1rem;
-      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      padding: 0.4rem 1.2rem;
       background-color: #ff8fab;
       border: none;
       border-radius: 10px;
@@ -141,113 +176,135 @@
     #popup button:hover {
       background-color: #ff4a6e;
     }
-
-    /* Letter paper */
     #letter {
-      position: fixed;
-      top: 30%; /* moved higher */
-      left: 50%;
-      transform: translate(-50%, -30%);
-      width: 90vw;
-      max-width: 350px;
-      background: #fff8f9;
-      border-radius: 15px;
-      box-shadow:
-        0 0 15px rgba(0,0,0,0.15),
-        inset 0 0 40px #ffe0e8;
-      padding: 2.5rem 2rem;
+      margin-top: 1.5rem;
       font-size: 1.6rem;
-      font-weight: bold;
-      color: #b0003a;
       line-height: 1.5;
-      text-align: center;
-      user-select: none;
-      z-index: 30;
-      display: none;
       white-space: pre-line;
       font-family: 'Segoe Script', cursive, 'Comic Sans MS', cursive, sans-serif;
+      color: #a1003e;
     }
 
-    /* Responsive tweaks */
+    /* ========== MINI-GAME ========== */
+    #gameArea {
+      position: relative;
+      height: 250px;
+      background: #ffd1e0;
+      border-radius: 15px;
+      overflow: hidden;
+      user-select: none;
+    }
+    .heart {
+      position: absolute;
+      width: 40px;
+      height: 36px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Heart_font_awesome.svg/1024px-Heart_font_awesome.svg.png') no-repeat center center;
+      background-size: contain;
+      cursor: pointer;
+      animation: fall 5s linear infinite;
+      user-select: none;
+    }
+    @keyframes fall {
+      0% { top: -50px; }
+      100% { top: 250px; }
+    }
+    #score {
+      margin-top: 0.8rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #660038;
+    }
+    #gameMessage {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: #aa005a;
+      min-height: 1.2em;
+    }
+
+    /* Responsive */
     @media (max-width: 400px) {
-      #overlay {
+      nav button {
         font-size: 1rem;
+        padding: 0.8rem 0;
       }
-      #sliderContainer {
-        max-width: 300px;
-        bottom: 160px; /* mobile slightly less up */
+      section {
+        max-width: 100%;
+        margin: 1rem 0 1rem;
+        min-height: 250px;
       }
-      input[type=range]::-webkit-slider-thumb,
-      input[type=range]::-moz-range-thumb {
-        width: 18px;
-        height: 18px;
-        margin-top: -12px;
+      #gameArea {
+        height: 200px;
       }
-      input[type=range] {
-        height: 12px;
-      }
-      #popup {
-        padding: 1rem 1.5rem;
-        font-size: 1rem;
-        max-width: 260px;
-      }
-      #emoji {
-        font-size: 2.5rem;
-        margin-bottom: 0.5rem;
-      }
-      #popup button {
-        font-size: 1rem;
-        padding: 0.4rem 1rem;
-      }
-      #letter {
-        font-size: 1.3rem;
-        padding: 2rem 1.5rem;
-        max-width: 280px;
+      .heart {
+        width: 30px;
+        height: 27px;
       }
     }
   </style>
 </head>
 <body>
 
-  <div id="overlay">
-    <div>Slide to reveal</div>
-    <div id="sliderContainer">
-      <input type="range" min="0" max="100" value="0" id="loveSlider" />
-    </div>
-  </div>
+  <nav>
+    <button class="tabBtn active" data-tab="home">Home</button>
+    <button class="tabBtn" data-tab="game">Mini-Game</button>
+    <button class="tabBtn" data-tab="slider">Slider Letter</button>
+  </nav>
 
-  <div id="popup">
-    <div id="emoji">📩</div>
-    <button id="openBtn">read?</button>
-  </div>
+  <!-- HOME -->
+  <section id="home" class="active">
+    <h1>Welcome to Our Love Site 💖</h1>
+    <p>Hi Vivi! This little site is just for you, filled with love and fun.</p>
+  </section>
 
-  <div id="letter">
+  <!-- MINI-GAME -->
+  <section id="game">
+    <div id="gameArea"></div>
+    <div id="score">Score: 0</div>
+    <div id="gameMessage"></div>
+  </section>
+
+  <!-- SLIDER LETTER -->
+  <section id="slider">
+    <div id="overlay">
+      <div id="overlayText">Slide to reveal</div>
+      <div id="sliderContainer">
+        <input type="range" min="0" max="100" value="0" id="loveSlider" />
+      </div>
+
+      <div id="popup">
+        <div id="emoji">📩</div>
+        <button id="openBtn">read?</button>
+      </div>
+
+      <div id="letter" style="display:none;">
 Ilysm Vivi 💖
-  </div>
+      </div>
+    </div>
+  </section>
 
   <script>
+    // TAB NAV
+    const tabs = document.querySelectorAll('.tabBtn');
+    const sections = document.querySelectorAll('section');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // SLIDER LETTER LOGIC
     const slider = document.getElementById('loveSlider');
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('popup');
     const openBtn = document.getElementById('openBtn');
     const letter = document.getElementById('letter');
+    const overlayText = document.getElementById('overlayText');
 
     slider.addEventListener('input', () => {
-      const val = slider.value;
-      overlay.style.opacity = 1 - val / 100;
-
-      if(val == 100) {
-        popup.style.display = 'block';
-        slider.disabled = true;
-      }
-    });
-
-    openBtn.addEventListener('click', () => {
-      popup.style.display = 'none';
-      overlay.style.display = 'none';
-      letter.style.display = 'block';
-    });
-  </script>
-
-</body>
-</html>
+      overlay.style.clipPath = `inset(0 ${100 - slider.value}% 0 0)`;
+      if (slider.value >= 95) {
+        popup
