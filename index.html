@@ -83,11 +83,10 @@
 </head>
 <body>
     <!-- Background Music Player -->
-    <!-- IMPORTANT: When hosting on GitHub Pages, change the 'src' attribute below -->
-    <!-- from "uploaded:let-go-feat-veronika-redd.mp3" to "let-go-feat-veronika-redd.mp3" -->
-    <!-- and make sure the MP3 file is in the same directory as this HTML file. -->
     <audio id="background-music" loop>
-     <source src="let-go-feat-veronika-redd.mp3" type="audio/mpeg">
+        <!-- Remember to change this SRC if you upload your own file to GitHub Pages! -->
+        <!-- Example for GitHub Pages if the MP3 is in the same folder: <source src="let-go-feat-veronika-redd.mp3" type="audio/mpeg"> -->
+        <source src="uploaded:let-go-feat-veronika-redd.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
@@ -205,6 +204,10 @@
             if (introScreen.style.opacity !== '0') {
                 // Fade out the intro screen
                 introScreen.classList.add('opacity-0', 'pointer-events-none');
+                
+                // IMMEDIATELY make main-content visible and interactive (it will fade in over 1.5s)
+                mainContent.classList.remove('opacity-0', 'pointer-events-none');
+
                 // Remove the click cursor from the body as the interaction is done for the intro
                 document.body.style.cursor = 'default';
 
@@ -222,12 +225,10 @@
                     hasInteracted = true;
                 }
 
-                // After the fade-out transition, fade in the new content
+                // Start the dynamic text effect on the main content screen AFTER it has time to fade in
                 setTimeout(() => {
-                    mainContent.classList.remove('opacity-0', 'pointer-events-none');
-                    // Start the dynamic text effect on the main content screen
                     typeAndDelete();
-                }, 1500); // This delay should match the CSS transition duration (1.5s)
+                }, 1500); // This delay should still match the CSS transition duration (1.5s)
             }
         });
     </script>
