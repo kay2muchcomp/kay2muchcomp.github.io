@@ -84,9 +84,11 @@
 <body>
     <!-- Background Music Player -->
     <audio id="background-music" loop>
-        <!-- Remember to change this SRC if you upload your own file to GitHub Pages! -->
-        <!-- Example for GitHub Pages if the MP3 is in the same folder: <source src="let-go-feat-veronika-redd.mp3" type="audio/mpeg"> -->
-        <source src="let-go-feat-veronika-redd.mp3" type="audio/mpeg">
+        <!-- IMPORTANT: When hosting on GitHub Pages, change this SRC! -->
+        <!-- If let-go-feat-veronika-redd.mp3 is in the same folder as index.html, use: -->
+        <!-- <source src="let-go-feat-veronika-redd.mp3" type="audio/mpeg"> -->
+        <!-- For the Gemini preview environment, we use the 'uploaded:' prefix -->
+        <source src="uploaded:let-go-feat-veronika-redd.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
@@ -114,18 +116,28 @@
                 <span class="typing-text-main"></span><span class="typing-cursor-main"></span>
             </p>
 
-            <!-- Profile Picture - Reverted to placeholder -->
-            <img src="https://placehold.co/200x200/5C5C5C/FFFFFF?text=PROFILE" alt="Profile Picture" class="rounded-lg mb-8 shadow-lg">
+            <!-- Profile Picture - Using your uploaded image -->
+            <!-- IMPORTANT: When hosting on GitHub Pages, change this SRC! -->
+            <!-- If 1407c91f48fedf313ad76fc26ab2a544.png is in the same folder, use: -->
+            <!-- <img src="1407c91f48fedf313ad76fc26ab2a544.png" alt="Profile Picture" class="rounded-lg mb-8 shadow-lg w-[200px] h-[200px] object-cover"> -->
+            <img src="uploaded:1407c91f48fedf313ad76fc26ab2a544.png-3fe3cb78-70b0-4f25-b4ab-8bd74c62e92d" alt="Profile Picture" class="rounded-lg mb-8 shadow-lg w-[200px] h-[200px] object-cover">
 
             <!-- Username and Small Profile Icon Section -->
             <div class="flex items-center space-x-2">
-                <!-- Small Profile Icon - Reverted to placeholder -->
-                <img src="https://placehold.co/40x40/7C7C7C/FFFFFF?text=USER" alt="Small Profile Icon" class="rounded-full">
+                <!-- Small Profile Icon - Using your uploaded image -->
+                <!-- IMPORTANT: When hosting on GitHub Pages, change this SRC! -->
+                <!-- If 1407c91f48fedf313ad76fc26ab2a544.png is in the same folder, use: -->
+                <!-- <img src="1407c91f48fedf313ad76fc26ab2a544.png" alt="Small Profile Icon" class="rounded-full w-[40px] h-[40px] object-cover"> -->
+                <img src="1407c91f48fedf313ad76fc26ab2a544.png" alt="Small Profile Icon" class="rounded-full w-[40px] h-[40px] object-cover">
                 <span class="text-2xl md:text-3xl text-white">6uiced</span>
                 
                 <!-- Discord Badges -->
-                <img src="1263-activedev-badge.png" class="w-8 h-8 md:w-10 md:h-10">
-                <img src="hype_squad_event_logo.png" class="w-8 h-8 md:w-10 md:h-10">
+                <!-- IMPORTANT: When hosting on GitHub Pages, change these SRCs! -->
+                <!-- If images are in the same folder, use: -->
+                <!-- <img src="1263-activedev-badge.png" alt="Active Developer Badge" title="Active Developer" class="w-8 h-8 md:w-10 md:h-10"> -->
+                <!-- <img src="hype_squad_event_logo.png" alt="HypeSquad Events Badge" title="HypeSquad Events" class="w-8 h-8 md:w-10 md:h-10"> -->
+               <img src="1263-activedev-badge.png" class="w-8 h-8 md:w-10 md:h-10">
+               <img src="hype_squad_event_logo.png" class="w-8 h-8 md:w-10 md:h-10">
             </div>
         </div>
 
@@ -164,7 +176,7 @@
         const dynamicTextElement = document.querySelector('.typing-text-main');
         const sentences = [
             "I exploit in lego games",
-            "I hate coding",
+            "I love coding",
             "I love my gf"
         ];
         let sentenceIndex = 0;
