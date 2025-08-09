@@ -117,67 +117,6 @@
             50% { opacity: 1; }
         }
     </style>
-    <!-- Firebase SDKs -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Firebase configuration (provided by Canvas environment)
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
-
-        async function incrementViewCounter() {
-            try {
-                // Sign in anonymously if not already authenticated
-                if (!auth.currentUser) {
-                    await signInAnonymously(auth);
-                }
-                const userId = auth.currentUser?.uid || crypto.randomUUID(); // Fallback to random ID if auth fails
-
-                // Document path for the public view counter
-                const counterDocRef = doc(db, `artifacts/${appId}/public/data/website_views`, 'main_counter');
-
-                // Get the current counter value
-                const docSnap = await getDoc(counterDocRef);
-
-                if (docSnap.exists()) {
-                    // If counter exists, increment it
-                    await updateDoc(counterDocRef, {
-                        count: increment(1)
-                    });
-                } else {
-                    // If counter does not exist, create it and set to 1
-                    await setDoc(counterDocRef, {
-                        count: 1,
-                        initialUserId: userId,
-                        createdAt: new Date()
-                    });
-                }
-                
-                // Fetch the updated count to display
-                const updatedDocSnap = await getDoc(counterDocRef);
-                if (updatedDocSnap.exists()) {
-                    const currentCount = updatedDocSnap.data().count;
-                    document.getElementById('view-count').textContent = `Views: ${currentCount}`;
-                }
-
-            } catch (error) {
-                console.error("Error updating view counter:", error);
-                // Display a message if counter fails to load/update
-                document.getElementById('view-count').textContent = 'Views: Error';
-            }
-        }
-
-        // Call the function to increment and display counter when page is loaded
-        window.addEventListener('load', incrementViewCounter);
-
-    </script>
 </head>
 <body>
     <!-- Background Video -->
@@ -217,8 +156,8 @@
 
             <!-- Username and Small Profile Icon Section -->
             <div class="border-2 border-white px-4 py-2 rounded-3xl flex items-center space-x-2">
-                <!-- Small Profile Icon - Using 'hype_squad_event_logo.png' (the gold icon) -->
-                <img src="hype_squad_event_logo.png" alt="Small Profile Icon" class="rounded-full w-[40px] h-[40px] object-cover">
+                <!-- Small Profile Icon - Using '1407c91f48fedf313ad76fc26ab2a544.png' (anime couple) -->
+                <img src="1407c91f48fedf313ad76fc26ab2a544.png" alt="Small Profile Icon" class="rounded-full w-[40px] h-[40px] object-cover">
                 <span class="text-2xl md:text-3xl text-white">6uiced</span>
                 
                 <!-- Discord Badges - Corrected paths for GitHub Pages -->
@@ -229,9 +168,7 @@
 
         <!-- Footer Text -->
         <footer class="w-full text-center py-4 text-gray-500 text-base">
-            <span id="view-count" class="text-sm">Views: Loading...</span>
-            <img id="eye-icon" src="303-3037570_eye-logo-png-removebg-preview.png" alt="Eye Icon" class="inline-block h-4 w-4 ml-1 align-text-bottom">
-            <br>
+            <!-- View counter and eye icon removed -->
             sleeping zzz
         </footer>
     </div>
