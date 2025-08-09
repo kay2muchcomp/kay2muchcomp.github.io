@@ -1,316 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For Vivi 💖</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter World</title>
+    <!-- Link to 'VT323' font from Google Fonts for a retro/pixelated feel -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <!-- Link to Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Apply VT323 font globally for a retro, pixelated feel */
+        body {
+            font-family: 'VT323', monospace;
+            background-color: #000000; /* Pure black background */
+            color: #ffffff; /* Changed to white for the intro screen text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevent scrollbars */
+            caret-color: transparent; /* Hide the default text input cursor */
+            cursor: pointer; /* Indicate it's clickable on the intro screen */
+            user-select: none; /* Prevent text selection */
+        }
 
-    body {
-      font-family: 'Patrick Hand', cursive;
-      background-color: #ffe6f0;
-      color: #d63384;
-      text-align: center;
-      overflow-x: hidden;
-    }
+        /* --- Custom Cursor Styles for Intro Screen --- */
+        .blinking-cursor {
+            display: inline-block;
+            width: 0.8em;
+            height: 1.2em;
+            background-color: #ffffff; /* White for intro screen cursor */
+            vertical-align: middle;
+            animation: blink-caret .75s step-end infinite;
+            margin-left: 0.1em;
+        }
 
-    header {
-      padding: 1em;
-      background-color: #ffcce0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+        /* Keyframes for the blinking cursor effect */
+        @keyframes blink-caret {
+            from, to { opacity: 0; }
+            50% { opacity: 1; }
+        }
 
-    nav button {
-      background-color: #ffb6d9;
-      border: none;
-      padding: 0.6em 1.2em;
-      margin: 0 0.3em;
-      border-radius: 8px;
-      font-weight: bold;
-      color: #fff;
-      cursor: pointer;
-    }
+        /* --- Screen Transition Styles --- */
+        /* Basic transition for fade effects */
+        .transition-opacity-slow {
+            transition: opacity 1.5s ease-in-out; /* Slower transition for a smoother fade */
+        }
+        .pointer-events-none {
+            pointer-events: none; /* Disables click events on the element */
+        }
 
-    nav button.active {
-      background-color: #ff69b4;
-    }
+        /* Specific styles for the content screen to ensure proper layout */
+        #main-content {
+            cursor: default; /* Change cursor back to default on the main content screen */
+            color: #ffffff; /* White text color for the main content screen */
+        }
+        #main-content nav a:hover {
+            color: #a0a0a0; /* Subtle hover for nav links */
+        }
 
-    section {
-      display: none;
-      padding: 2em;
-    }
+        /* Typewriter effect for the second line on main content screen */
+        .typing-text-main {
+            display: inline-block;
+        }
+        .typing-cursor-main {
+            display: inline-block;
+            width: 0.5em; /* Smaller cursor for subtle effect */
+            height: 1em;
+            background-color: #ffffff;
+            vertical-align: middle;
+            animation: blink-caret-main .75s step-end infinite;
+            margin-left: 0.1em;
+        }
 
-    section.active {
-      display: block;
-    }
-
-    #sliderContainer {
-      position: relative;
-      margin-top: 2em;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    #overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 120px;
-      background-color: #ffcce0;
-      clip-path: inset(0 100% 0 0);
-      transition: clip-path 0.3s ease;
-      z-index: 2;
-      border-radius: 15px;
-      display: block;
-    }
-
-    #overlayText {
-      position: absolute;
-      top: 40%;
-      width: 100%;
-      font-size: 1.5em;
-      z-index: 3;
-      color: #d63384;
-      font-weight: bold;
-      user-select: none;
-    }
-
-    #popup {
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #ffe6f0;
-      padding: 1em 2em;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      display: none;
-      z-index: 4;
-      flex-direction: column;
-      align-items: center;
-      user-select: none;
-    }
-
-    #popup button {
-      margin-top: 1em;
-      background-color: #ff69b4;
-      border: none;
-      padding: 0.6em 1.2em;
-      color: #fff;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      font-family: 'Patrick Hand', cursive;
-      font-size: 1.1em;
-    }
-
-    #letter {
-      display: none;
-      margin-top: 2em;
-      font-size: 1.4em;
-      background: #fff0f5;
-      padding: 2em;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-      color: #d63384;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      font-weight: bold;
-      line-height: 1.5;
-      user-select: text;
-    }
-
-    input[type=range] {
-      appearance: none;
-      width: 100%;
-      height: 14px;
-      background: #ffd6e8;
-      border-radius: 10px;
-      outline: none;
-      margin: 20px auto 10px auto;
-      display: block;
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
-      position: relative;
-    }
-
-    input[type=range]::-webkit-slider-thumb {
-      appearance: none;
-      width: 40px;
-      height: 40px;
-      background: transparent;
-      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='65' font-size='85'>💖</text></svg>");
-      background-size: contain;
-      background-repeat: no-repeat;
-      border: none;
-      cursor: pointer;
-      margin-top: -13px;
-    }
-
-    input[type=range]::-moz-range-thumb {
-      width: 40px;
-      height: 40px;
-      background: transparent;
-      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='65' font-size='85'>💖</text></svg>");
-      background-size: contain;
-      background-repeat: no-repeat;
-      border: none;
-      cursor: pointer;
-    }
-  </style>
+        @keyframes blink-caret-main {
+            from, to { opacity: 0; }
+            50% { opacity: 1; }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>HIIII ML</h1>
-    <p><strong>IM SORRY IF ITS NOT GOOD I TOLD U THE CODE IS GONE N I JSUT MADE THIS, IM SORRY..</strong></p>
-    <nav>
-      <button class="tabBtn active" data-tab="home">Home</button>
-      <button class="tabBtn" data-tab="game">Minigame</button>
-      <button class="tabBtn" data-tab="slider">Slider Letter</button>
-    </nav>
-  </header>
+    <!-- Background Music Player -->
+    <!-- IMPORTANT: When hosting on GitHub Pages, change the 'src' attribute below -->
+    <!-- from "uploaded:let-go-feat-veronika-redd.mp3" to "let-go-feat-veronika-redd.mp3" -->
+    <!-- and make sure the MP3 file is in the same directory as this HTML file. -->
+    <audio id="background-music" loop>
+        <source src="uploaded:let-go-feat-veronika-redd.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-  <section id="home" class="active">
-    <h2>💌 A lil site for you 💌</h2>
-    <p>You make everything better, and I hope this made you smile just a little bit 💖</p>
-  </section>
-
-  <section id="game">
-    <div id="score">Score: 0</div>
-    <div id="gameArea" style="height: 400px; background: #ffe0eb; margin: 2em auto; border-radius: 20px; max-width: 90%;"></div>
-    <div id="gameMessage"></div>
-  </section>
-
-  <section id="slider">
-    <div id="sliderContainer">
-      <div id="overlay">
-        <div id="overlayText">Slide to see something...</div>
-      </div>
-      <input type="range" id="loveSlider" min="0" max="100" value="0" />
-      <div id="popup">
-        <div style="font-size: 2em">📩</div>
-        <button id="openBtn">read?</button>
-      </div>
-      <div id="letter">
-        <p>ilysm vivi 💖</p>
-        <p>ur the most amazing, cute, awesome, pretty, sweet gf ever!!!!!! 💕</p>
-      </div>
+    <!-- Initial Intro Screen -->
+    <div id="intro-screen" class="absolute inset-0 flex justify-center items-center text-3xl md:text-4xl lg:text-5xl font-bold transition-opacity-slow">
+        <span class="typewriter-text"><span class="blinking-cursor"></span></span>
     </div>
-  </section>
 
-  <script>
-    const tabs = document.querySelectorAll('.tabBtn');
-    const sections = document.querySelectorAll('section');
-    const gameArea = document.getElementById('gameArea');
-    const scoreEl = document.getElementById('score');
-    const gameMessage = document.getElementById('gameMessage');
-    let score = 0;
-    let gameInterval;
+    <!-- New Content Screen (initially hidden) -->
+    <div id="main-content" class="absolute inset-0 flex flex-col justify-between items-center text-3xl md:text-4xl lg:text-5xl font-bold opacity-0 pointer-events-none transition-opacity-slow">
+        <!-- Navigation Bar -->
+        <nav class="w-full py-4 text-center">
+            <div class="space-x-8 text-lg">
+                <a href="#" class="hover:text-gray-400 transition-colors">Home</a>
+                <a href="#" class="hover:text-gray-400 transition-colors">Projects</a>
+                <a href="#" class="hover:text-gray-400 transition-colors">Contact</a>
+                <a href="#" class="hover:text-gray-400 transition-colors">Donate</a>
+            </div>
+        </nav>
 
-    const slider = document.getElementById('loveSlider');
-    const overlay = document.getElementById('overlay');
-    const popup = document.getElementById('popup');
-    const openBtn = document.getElementById('openBtn');
-    const letter = document.getElementById('letter');
-    const overlayText = document.getElementById('overlayText');
+        <!-- Main Profile Section -->
+        <div class="flex flex-col items-center flex-grow justify-center px-4 py-8">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Hello World!</h1>
+            <p id="dynamic-text" class="text-xl md:text-2xl lg:text-3xl mb-8">
+                <span class="typing-text-main"></span><span class="typing-cursor-main"></span>
+            </p>
 
-    function resetSlider() {
-      slider.value = 0;
-      overlay.style.clipPath = `inset(0 100% 0 0)`;
-      overlay.style.display = 'block';
-      popup.style.display = 'none';
-      overlayText.style.display = 'block';
-      letter.style.display = 'none';
-    }
+            <!-- Profile Picture - Using a placeholder URL -->
+            <img src="https://placehold.co/200x200/5C5C5C/FFFFFF?text=PROFILE" alt="Profile Picture" class="rounded-lg mb-8 shadow-lg">
 
-    function startGame() {
-      score = 0;
-      scoreEl.textContent = 'Score: ' + score;
-      gameMessage.textContent = 'Catch the hearts by clicking on them!';
-      gameInterval = setInterval(createHeart, 1200);
-    }
+            <!-- Username and Small Profile Icon Section -->
+            <div class="flex items-center space-x-2">
+                <!-- Small Profile Icon - Using a placeholder URL -->
+                <img src="https://placehold.co/40x40/7C7C7C/FFFFFF?text=USER" alt="Small Profile Icon" class="rounded-full">
+                <span class="text-2xl md:text-3xl text-white">6uiced</span>
+            </div>
+        </div>
 
-    function stopGame() {
-      clearInterval(gameInterval);
-      gameInterval = null;
-      document.querySelectorAll('.heart').forEach(h => h.remove());
-      gameMessage.textContent = '';
-    }
+        <!-- Footer Text -->
+        <footer class="w-full text-center py-4 text-gray-500 text-base">
+            sleeping zzz
+        </footer>
+    </div>
 
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.textContent = '💖';
-      heart.style.left = Math.random() * (gameArea.clientWidth - 40) + 'px';
-      heart.style.animationDuration = 4 + Math.random() * 3 + 's';
+    <script>
+        const backgroundMusic = document.getElementById('background-music');
+        let hasInteracted = false; // Flag to track user interaction
 
-      heart.addEventListener('click', () => {
-        score++;
-        scoreEl.textContent = 'Score: ' + score;
-        gameMessage.textContent = 'You caught a heart! 💖';
-        heart.remove();
-        setTimeout(() => gameMessage.textContent = '', 1200);
-      });
+        // --- Intro Screen Typewriter Effect ---
+        const introScreen = document.getElementById('intro-screen');
+        const mainContent = document.getElementById('main-content');
+        const introTextElement = introScreen.querySelector('.typewriter-text');
+        const introOriginalTextContent = '> Enter World ';
+        let introCharIndex = 0;
+        const introSpeed = 70; // typing speed in milliseconds
 
-      gameArea.appendChild(heart);
-
-      setTimeout(() => {
-        if (gameArea.contains(heart)) {
-          gameMessage.textContent = 'Missed a heart! Try again.';
-          heart.remove();
-          setTimeout(() => gameMessage.textContent = '', 1200);
-        }
-      }, 7000);
-    }
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        sections.forEach(s => s.classList.remove('active'));
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.tab).classList.add('active');
-
-        if (tab.dataset.tab === 'game') {
-          startGame();
-        } else {
-          if (gameInterval) stopGame();
+        function typeIntroText() {
+            if (introCharIndex < introOriginalTextContent.length) {
+                introTextElement.insertBefore(document.createTextNode(introOriginalTextContent.charAt(introCharIndex)), introTextElement.querySelector('.blinking-cursor'));
+                introCharIndex++;
+                setTimeout(typeIntroText, introSpeed);
+            }
         }
 
-        if (tab.dataset.tab === 'slider') {
-          resetSlider();
+        // Start intro typing effect when the page loads
+        window.onload = function() {
+            typeIntroText();
+        };
+
+        // --- Main Content Screen Dynamic Text Effect ---
+        const dynamicTextElement = document.querySelector('.typing-text-main');
+        const sentences = [
+            "I exploit in lego games",
+            "I love coding",
+            "I love my gf"
+        ];
+        let sentenceIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        // Increased typing and deleting speeds to make the overall animation slower
+        const typingSpeed = 150; // Speed of typing characters (increased from 100)
+        const deletingSpeed = 75; // Speed of deleting characters (increased from 50)
+        const pauseTime = 2000; // Remains 2000ms (2 seconds) for pause after typing a sentence
+
+        function typeAndDelete() {
+            const currentSentence = sentences[sentenceIndex];
+
+            if (isDeleting) {
+                // Deleting text
+                dynamicTextElement.textContent = currentSentence.substring(0, charIndex - 1);
+                charIndex--;
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    sentenceIndex = (sentenceIndex + 1) % sentences.length; // Move to the next sentence
+                    setTimeout(typeAndDelete, typingSpeed); // Start typing the next sentence
+                } else {
+                    setTimeout(typeAndDelete, deletingSpeed);
+                }
+            } else {
+                // Typing text
+                dynamicTextElement.textContent = currentSentence.substring(0, charIndex + 1);
+                charIndex++;
+                if (charIndex === currentSentence.length) {
+                    isDeleting = true;
+                    setTimeout(typeAndDelete, pauseTime); // Pause before deleting
+                } else {
+                    setTimeout(typeAndDelete, typingSpeed);
+                }
+            }
         }
-      });
-    });
 
-    slider.addEventListener('input', () => {
-      overlay.style.clipPath = `inset(0 ${100 - slider.value}% 0 0)`;
-      if (slider.value >= 95) {
-        overlay.style.display = 'none';
-        popup.style.display = 'flex';
-        overlayText.style.display = 'none';
-      } else {
-        overlay.style.display = 'block';
-        popup.style.display = 'none';
-        overlayText.style.display = 'block';
-        letter.style.display = 'none';
-      }
-    });
+        // Handle click anywhere on the document body for screen transition and music playback
+        document.body.addEventListener('click', function() {
+            // Only transition if the intro screen is currently visible (opacity is not 0)
+            if (introScreen.style.opacity !== '0') {
+                // Fade out the intro screen
+                introScreen.classList.add('opacity-0', 'pointer-events-none');
+                // Remove the click cursor from the body as the interaction is done for the intro
+                document.body.style.cursor = 'default';
 
-    openBtn.addEventListener('click', () => {
-      letter.style.display = 'block';
-      popup.style.display = 'none';
-    });
+                // Play background music on user interaction
+                if (!hasInteracted) {
+                    backgroundMusic.volume = 1.0; // Set to full volume for testing
+                    backgroundMusic.play()
+                        .then(() => {
+                            console.log("Music started playing!"); // Log success
+                        })
+                        .catch(error => {
+                            console.error("Music autoplay blocked or failed:", error); // Log error
+                            // You might want to add a visible message to the user here if music fails to play
+                        });
+                    hasInteracted = true;
+                }
 
-    resetSlider();
-  </script>
+                // After the fade-out transition, fade in the new content
+                setTimeout(() => {
+                    mainContent.classList.remove('opacity-0', 'pointer-events-none');
+                    // Start the dynamic text effect on the main content screen
+                    typeAndDelete();
+                }, 1500); // This delay should match the CSS transition duration (1.5s)
+            }
+        });
+    </script>
+
 </body>
 </html>
